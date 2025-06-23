@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatter Schedule Generator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-section,
+        .output {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            margin: 5px 0 10px;
+            padding: 8px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #2a7ae2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .block {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .break {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Scatter Block Schedule Generator</h1>
+    <div class="form-section">
+        <label>Task name</label>
+        <input type="text" id="taskName" placeholder="e.g. Game Dev">
+
+        <label>How many 15-min blocks?</label>
+        <input type="number" id="taskBlocks" min="1" value="2">
+
+        <button onclick="addTask()">Add Task</button>
+        <button onclick="generateSchedule()">Generate Schedule</button>
+        <div id="taskList"></div>
+    </div>
+
+    <div class="output">
+        <h2>Your Scattered Schedule</h2>
+        <div id="scheduleOutput"></div>
+    </div>
+
+    <script>
+        let tasks = [];
+
+        function addTask() {
+            const name = document.getElementById("taskName").value;
+            const blocks = parseInt(document.getElementById("taskBlocks").value);
+            if (name && blocks > 0) {
+                tasks.push({ name, blocks });
+                document.getElementById("taskList").innerHTML += `<div>${name} (${blocks} blocks)</div>`;
+                document.getElementById("taskName").value = "";
+                document.getElementById("taskBlocks").value = 1;
+            }
+        }
+
+        function generateSchedule() {
+            const totalBlocks = tasks.reduce((sum, t) => sum + t.blocks, 0);
+            const breakEvery = 2;
+            let blocks = [];
+
+            // Fill all blocks
+            tasks.forEach(task => {
+                for (let i = 0; i < task.blocks; i++) {
+                    blocks.push({ type: 'task', name: task.name });
+                }
+            });
+
+            // Shuffle for scatter
+            for (let i = blocks.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [blocks[i], blocks[j]] = [blocks[j], blocks[i]];
+            }
+
+            // Insert breaks
+            const scattered = [];
+            for (let i = 0; i < blocks.length; i++) {
+                scattered.push(blocks[i]);
+                if ((i + 1) % breakEvery === 0 && i !== blocks.length - 1) {
+                    scattered.push({ type: 'break' });
+                }
+            }
+
+            // Display
+            const output = scattered.map((block, i) => {
+                if (block.type === 'break') return `<div class='block break'>Break — 15 min</div>`;
+                return `<div class='block'>${block.name} — 15 min</div>`;
+            }).join("");
+            document.getElementById("scheduleOutput").innerHTML = output;
+        }
+    </script>
+</body>
+
+</html>
