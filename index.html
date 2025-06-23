@@ -1,125 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Study Schedule</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
-    margin: 0;
-    padding: 20px;
-    color: #333;
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .schedule {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .item {
-    border-bottom: 1px solid #eee;
-    padding: 12px 0;
-  }
-  .time {
-    font-weight: bold;
-    color: #2a7ae2;
-    width: 90px;
-    display: inline-block;
-  }
-  .activity {
-    display: inline-block;
-  }
-  .break {
-    font-style: italic;
-    color: #666;
-  }
-  .current {
-    background: #d7f0ff;
-    border-left: 5px solid #2a7ae2;
-    padding-left: 15px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Today’s Schedule</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .schedule {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .item {
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+
+    .time {
+      font-weight: bold;
+      color: #2a7ae2;
+      width: 90px;
+      display: inline-block;
+    }
+
+    .activity {
+      display: inline-block;
+    }
+
+    .break {
+      font-style: italic;
+      color: #666;
+    }
+
+    .current {
+      background: #d7f0ff;
+      border-left: 5px solid #2a7ae2;
+      padding-left: 15px;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Daily Schedule (3 PM - 10 PM)</h1>
+  <h1>Today’s Schedule</h1>
   <div class="schedule" id="schedule">
-  
-    <div class="item" data-start="15:00" data-end="15:05"><span class="time">15:00 – 15:05</span> Experiment 1</div>
-    <div class="item" data-start="15:05" data-end="15:15"><span class="time">15:05 – 15:15</span> Clean room — floor</div>
-  
-    <div class="item" data-start="15:15" data-end="15:30"><span class="time">15:15 – 15:30</span> Game Dev — small bug fix
+
+    <div class="item" data-start="15:00" data-end="15:30"><span class="time">15:00 – 15:30</span> Clean Room (Floor &
+      Dust)</div>
+    <div class="item break" data-start="15:30" data-end="15:45"><span class="time">15:30 – 15:45</span> Break — Walk or
+      Stretch</div>
+    <div class="item" data-start="15:45" data-end="16:15"><span class="time">15:45 – 16:15</span> Game Dev — Bug Fixing
     </div>
-    <div class="item" data-start="15:30" data-end="15:35"><span class="time">15:30 – 15:35</span> Experiment 2</div>
-    <div class="item break" data-start="15:35" data-end="15:45"><span class="time">15:35 – 15:45</span> Break — stretch or
-      walk</div>
-  
-    <div class="item" data-start="15:45" data-end="16:00"><span class="time">15:45 – 16:00</span> Clean room — clothes &
-      dust</div>
-    <div class="item" data-start="16:00" data-end="16:15"><span class="time">16:00 – 16:15</span> Game Dev — add UI
-      element</div>
-    <div class="item" data-start="16:15" data-end="16:20"><span class="time">16:15 – 16:20</span> Experiment 3</div>
-  
-    <div class="item break" data-start="16:20" data-end="16:30"><span class="time">16:20 – 16:30</span> Break — snack
+
+    <div class="item break" data-start="16:15" data-end="16:30"><span class="time">16:15 – 16:30</span> Break — Chill or
+      Snack</div>
+    <div class="item" data-start="16:30" data-end="18:00"><span class="time">16:30 – 18:00</span> Creative Project (Make
+      Something)</div>
+
+    <div class="item break" data-start="18:00" data-end="18:15"><span class="time">18:00 – 18:15</span> Break — Music or
+      Quiet</div>
+    <div class="item" data-start="18:15" data-end="18:45"><span class="time">18:15 – 18:45</span> Game Dev — New Feature
     </div>
-    <div class="item" data-start="16:30" data-end="16:45"><span class="time">16:30 – 16:45</span> Clean room — organize
-      desk/shelves</div>
-    <div class="item" data-start="16:45" data-end="17:00"><span class="time">16:45 – 17:00</span> Game Dev — test feature
-    </div>
-  
-    <div class="item" data-start="17:00" data-end="17:05"><span class="time">17:00 – 17:05</span> Experiment 4</div>
-    <div class="item break" data-start="17:05" data-end="17:15"><span class="time">17:05 – 17:15</span> Break — light
-      music</div>
-  
-    <div class="item" data-start="17:15" data-end="17:30"><span class="time">17:15 – 17:30</span> Clean room — trash and
-      vacuum</div>
-    <div class="item" data-start="17:30" data-end="17:45"><span class="time">17:30 – 17:45</span> Game Dev — polish level
-      layout</div>
-  
-    <div class="item" data-start="17:45" data-end="18:00"><span class="time">17:45 – 18:00</span> Plan Rebecca Yarros bio
-    </div>
-    <div class="item break" data-start="18:00" data-end="18:30"><span class="time">18:00 – 18:30</span> Dinner / Free time
-    </div>
-  
-    <div class="item" data-start="18:30" data-end="18:45"><span class="time">18:30 – 18:45</span> Light file cleanup /
-      prep notes</div>
-    <div class="item" data-start="18:45" data-end="19:00"><span class="time">18:45 – 19:00</span> Game Dev — log next
-      tasks</div>
-  
-    <div class="item break" data-start="19:00" data-end="19:15"><span class="time">19:00 – 19:15</span> Break —
-      walk/stretch</div>
-    <div class="item" data-start="19:15" data-end="19:30"><span class="time">19:15 – 19:30</span> Tidy up workspace</div>
-  
-    <div class="item" data-start="19:30" data-end="19:45"><span class="time">19:30 – 19:45</span> Optional — start
-      biography writing</div>
-    <div class="item" data-start="19:45" data-end="20:00"><span class="time">19:45 – 20:00</span> Game Dev — final review
-    </div>
-  
-    <div class="item" data-start="20:00" data-end="20:15"><span class="time">20:00 – 20:15</span> Light task — notes or
-      ideas</div>
-    <div class="item break" data-start="20:15" data-end="20:30"><span class="time">20:15 – 20:30</span> Break — relax /
-      music</div>
-  
-    <div class="item" data-start="20:30" data-end="20:45"><span class="time">20:30 – 20:45</span> Final room check / fix
-      small things</div>
-    <div class="item" data-start="20:45" data-end="21:00"><span class="time">20:45 – 21:00</span> Journal or bio notes
-    </div>
-  
-    <div class="item break" data-start="21:00" data-end="21:15"><span class="time">21:00 – 21:15</span> Break — wind down
-    </div>
-    <div class="item" data-start="21:15" data-end="21:30"><span class="time">21:15 – 21:30</span> Free time — anything
-      creative</div>
-  
-    <div class="item" data-start="21:30" data-end="22:00"><span class="time">21:30 – 22:00</span> Day wrap-up — log,
-      chill, prep for tomorrow</div>
-  
+
+    <div class="item break" data-start="18:45" data-end="19:00"><span class="time">18:45 – 19:00</span> Break — Water &
+      Chill</div>
+    <div class="item" data-start="19:00" data-end="19:30"><span class="time">19:00 – 19:30</span> Reading</div>
+
+    <div class="item break" data-start="19:30" data-end="20:00"><span class="time">19:30 – 20:00</span> Free Time —
+      Music or Games</div>
+    <div class="item" data-start="20:00" data-end="20:30"><span class="time">20:00 – 20:30</span> Room Tidy — Shelves &
+      Final Touches</div>
+
+    <div class="item break" data-start="20:30" data-end="21:00"><span class="time">20:30 – 21:00</span> Wind Down —
+      Relax</div>
+    <div class="item" data-start="21:00" data-end="21:30"><span class="time">21:00 – 21:30</span> Journal, Notes, or
+      Quiet Thinking</div>
+
+    <div class="item" data-start="21:30" data-end="22:00"><span class="time">21:30 – 22:00</span> Wrap Up — Chill, Log,
+      Prepare for Sleep</div>
   </div>
 
   <script>
@@ -145,7 +119,8 @@
     }
 
     updateCurrentItem();
-    setInterval(updateCurrentItem, 60000); // Update every 1 minute
+    setInterval(updateCurrentItem, 60000); // Update every minute
   </script>
 </body>
+
 </html>
