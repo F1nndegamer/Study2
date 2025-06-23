@@ -12,11 +12,12 @@
       margin: 0;
       padding: 20px;
       color: #333;
+      transition: background 0.3s, color 0.3s;
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .schedule {
@@ -50,13 +51,60 @@
       border-left: 5px solid #2a7ae2;
       padding-left: 15px;
     }
+
+    button {
+      display: block;
+      margin: 0 auto 10px auto;
+      padding: 6px 12px;
+      background-color: #2a7ae2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #progressBar {
+      width: 100%;
+      height: 12px;
+      margin: 10px 0 20px;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background: #121212;
+      color: #eee;
+    }
+
+    body.dark .schedule {
+      background: #1e1e1e;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark .time {
+      color: #90caf9;
+    }
+
+    body.dark .break {
+      color: #aaa;
+    }
+
+    /* Mobile Optimization */
+    @media (max-width: 500px) {
+      .time {
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
   </style>
 </head>
 
 <body>
   <h1>15-Minute Block Schedule</h1>
-  <div class="schedule" id="schedule">
+  <button onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
+  <progress id="progressBar" value="0" max="100"></progress>
 
+  <div class="schedule" id="schedule">
+    <!-- 15:00 to 19:00 Blocks -->
     <div class="item" data-start="15:00" data-end="15:15"><span class="time">15:00 – 15:15</span> Clean Room — Floor
     </div>
     <div class="item break" data-start="15:15" data-end="15:30"><span class="time">15:15 – 15:30</span> Break — Stretch
@@ -91,6 +139,30 @@
     <div class="item" data-start="18:45" data-end="19:00"><span class="time">18:45 – 19:00</span> Free Time — Chill
     </div>
 
+    <!-- 19:00 to 22:00 Blocks -->
+    <div class="item" data-start="19:00" data-end="19:15"><span class="time">19:00 – 19:15</span> Game Dev — Level
+      Polish</div>
+    <div class="item break" data-start="19:15" data-end="19:30"><span class="time">19:15 – 19:30</span> Break — Light
+      Movement</div>
+    <div class="item" data-start="19:30" data-end="19:45"><span class="time">19:30 – 19:45</span> Room Final Cleanup
+    </div>
+    <div class="item" data-start="19:45" data-end="20:00"><span class="time">19:45 – 20:00</span> Read or Listen to
+      Music</div>
+
+    <div class="item break" data-start="20:00" data-end="20:15"><span class="time">20:00 – 20:15</span> Break — Wind
+      Down</div>
+    <div class="item" data-start="20:15" data-end="20:30"><span class="time">20:15 – 20:30</span> Journal or Ideas Dump
+    </div>
+    <div class="item" data-start="20:30" data-end="20:45"><span class="time">20:30 – 20:45</span> Free Time — Anything
+      Creative</div>
+    <div class="item break" data-start="20:45" data-end="21:00"><span class="time">20:45 – 21:00</span> Break — No
+      Screens</div>
+
+    <div class="item" data-start="21:00" data-end="21:15"><span class="time">21:00 – 21:15</span> Chill — No Tasks</div>
+    <div class="item" data-start="21:15" data-end="21:30"><span class="time">21:15 – 21:30</span> Reflect & Notes for
+      Tomorrow</div>
+    <div class="item" data-start="21:30" data-end="22:00"><span class="time">21:30 – 22:00</span> Wrap Up — Bed Prep &
+      Sleep</div>
   </div>
 
   <script>
@@ -98,6 +170,7 @@
       const now = new Date();
       const currentHour = now.getHours();
       const currentMinutes = now.getMinutes();
+      const nowTotal = currentHour * 60 + currentMinutes;
       const scheduleItems = document.querySelectorAll(".schedule .item");
 
       scheduleItems.forEach(item => {
@@ -105,7 +178,6 @@
         const end = item.getAttribute("data-end").split(":");
         const startTotal = parseInt(start[0]) * 60 + parseInt(start[1]);
         const endTotal = parseInt(end[0]) * 60 + parseInt(end[1]);
-        const nowTotal = currentHour * 60 + currentMinutes;
 
         if (nowTotal >= startTotal && nowTotal < endTotal) {
           item.classList.add("current");
@@ -115,8 +187,21 @@
       });
     }
 
+    function updateProgress() {
+      const now = new Date();
+      const nowTotal = now.getHours() * 60 + now.getMinutes();
+      const startMinutes = 15 * 60; // 15:00
+      const endMinutes = 22 * 60;   // 22:00
+      const percent = Math.min(100, Math.max(0, ((nowTotal - startMinutes) / (endMinutes - startMinutes)) * 100));
+      document.getElementById("progressBar").value = percent;
+    }
+
     updateCurrentItem();
-    setInterval(updateCurrentItem, 60000);
+    updateProgress();
+    setInterval(() => {
+      updateCurrentItem();
+      updateProgress();
+    }, 60000);
   </script>
 </body>
 
