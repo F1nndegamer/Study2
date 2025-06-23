@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Today’s Schedule</title>
+  <title>15-Min Block Schedule</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -40,10 +40,6 @@
       display: inline-block;
     }
 
-    .activity {
-      display: inline-block;
-    }
-
     .break {
       font-style: italic;
       color: #666;
@@ -58,42 +54,43 @@
 </head>
 
 <body>
-  <h1>Today’s Schedule</h1>
+  <h1>15-Minute Block Schedule</h1>
   <div class="schedule" id="schedule">
 
-    <div class="item" data-start="15:00" data-end="15:30"><span class="time">15:00 – 15:30</span> Clean Room (Floor &
-      Dust)</div>
-    <div class="item break" data-start="15:30" data-end="15:45"><span class="time">15:30 – 15:45</span> Break — Walk or
-      Stretch</div>
-    <div class="item" data-start="15:45" data-end="16:15"><span class="time">15:45 – 16:15</span> Game Dev — Bug Fixing
+    <div class="item" data-start="15:00" data-end="15:15"><span class="time">15:00 – 15:15</span> Clean Room — Floor
     </div>
-
-    <div class="item break" data-start="16:15" data-end="16:30"><span class="time">16:15 – 16:30</span> Break — Chill or
-      Snack</div>
-    <div class="item" data-start="16:30" data-end="18:00"><span class="time">16:30 – 18:00</span> Creative Project (Make
-      Something)</div>
-
-    <div class="item break" data-start="18:00" data-end="18:15"><span class="time">18:00 – 18:15</span> Break — Music or
-      Quiet</div>
-    <div class="item" data-start="18:15" data-end="18:45"><span class="time">18:15 – 18:45</span> Game Dev — New Feature
+    <div class="item break" data-start="15:15" data-end="15:30"><span class="time">15:15 – 15:30</span> Break — Stretch
+      or Music</div>
+    <div class="item" data-start="15:30" data-end="15:45"><span class="time">15:30 – 15:45</span> Game Dev — Bug Fix
     </div>
+    <div class="item" data-start="15:45" data-end="16:00"><span class="time">15:45 – 16:00</span> Read — 1 Chapter</div>
 
-    <div class="item break" data-start="18:45" data-end="19:00"><span class="time">18:45 – 19:00</span> Break — Water &
+    <div class="item break" data-start="16:00" data-end="16:15"><span class="time">16:00 – 16:15</span> Break — Water +
       Chill</div>
-    <div class="item" data-start="19:00" data-end="19:30"><span class="time">19:00 – 19:30</span> Reading</div>
+    <div class="item" data-start="16:15" data-end="16:30"><span class="time">16:15 – 16:30</span> Game Dev — Polish UI
+    </div>
+    <div class="item" data-start="16:30" data-end="16:45"><span class="time">16:30 – 16:45</span> Creative Work — Start
+    </div>
+    <div class="item break" data-start="16:45" data-end="17:00"><span class="time">16:45 – 17:00</span> Break — Move
+      Around</div>
 
-    <div class="item break" data-start="19:30" data-end="20:00"><span class="time">19:30 – 20:00</span> Free Time —
-      Music or Games</div>
-    <div class="item" data-start="20:00" data-end="20:30"><span class="time">20:00 – 20:30</span> Room Tidy — Shelves &
-      Final Touches</div>
+    <div class="item" data-start="17:00" data-end="17:15"><span class="time">17:00 – 17:15</span> Creative Work —
+      Continue</div>
+    <div class="item" data-start="17:15" data-end="17:30"><span class="time">17:15 – 17:30</span> Clean Room — Shelves
+    </div>
+    <div class="item break" data-start="17:30" data-end="17:45"><span class="time">17:30 – 17:45</span> Break — Music &
+      Snack</div>
+    <div class="item" data-start="17:45" data-end="18:00"><span class="time">17:45 – 18:00</span> Game Dev — Test Build
+    </div>
 
-    <div class="item break" data-start="20:30" data-end="21:00"><span class="time">20:30 – 21:00</span> Wind Down —
-      Relax</div>
-    <div class="item" data-start="21:00" data-end="21:30"><span class="time">21:00 – 21:30</span> Journal, Notes, or
-      Quiet Thinking</div>
+    <div class="item" data-start="18:00" data-end="18:15"><span class="time">18:00 – 18:15</span> Write or Journal</div>
+    <div class="item break" data-start="18:15" data-end="18:30"><span class="time">18:15 – 18:30</span> Break — Relax
+    </div>
+    <div class="item" data-start="18:30" data-end="18:45"><span class="time">18:30 – 18:45</span> Creative Work — Finish
+    </div>
+    <div class="item" data-start="18:45" data-end="19:00"><span class="time">18:45 – 19:00</span> Free Time — Chill
+    </div>
 
-    <div class="item" data-start="21:30" data-end="22:00"><span class="time">21:30 – 22:00</span> Wrap Up — Chill, Log,
-      Prepare for Sleep</div>
   </div>
 
   <script>
@@ -119,7 +116,7 @@
     }
 
     updateCurrentItem();
-    setInterval(updateCurrentItem, 60000); // Update every minute
+    setInterval(updateCurrentItem, 60000);
   </script>
 </body>
 
