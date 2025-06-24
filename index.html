@@ -87,6 +87,14 @@
     body.dark .break {
       color: #aaa;
     }
+    .item input.check {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+.item.checked {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
 
     /* Mobile Optimization */
     @media (max-width: 500px) {
@@ -208,6 +216,22 @@
       updateProgress();
       updateCurrentTime();
     }, 1000);
+
+    const items = document.querySelectorAll('.item');
+
+      items.forEach((item, index) => {
+        const checkbox = item.querySelector('input.check');
+        if (!checkbox) return;
+
+        const isChecked = localStorage.getItem('task_' + index) === 'true';
+        checkbox.checked = isChecked;
+        if (isChecked) item.classList.add('checked');
+
+        checkbox.addEventListener('change', () => {
+          item.classList.toggle('checked', checkbox.checked);
+          localStorage.setItem('task_' + index, checkbox.checked);
+        });
+      });
   </script>
 </body>
 </html>
