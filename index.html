@@ -196,7 +196,7 @@
     function updateProgress() {
       const now = new Date();
       const nowTotal = now.getHours() * 60 + now.getMinutes();
-      const startMinutes = 15 * 60; // 15:00
+      const startMinutes = 14 * 60; // 15:00
       const endMinutes = 22 * 60;   // 22:00
       const percent = Math.min(100, Math.max(0, ((nowTotal - startMinutes) / (endMinutes - startMinutes)) * 100));
       document.getElementById("progressBar").value = percent;
