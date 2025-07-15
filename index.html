@@ -113,128 +113,93 @@
 
   <div id="currentTime" style="text-align:center; font-size:1.2em; margin-bottom:10px;"></div>
 
-  <div class="schedule" id="schedule">
-    <div class="item" data-start="13:30" data-end="13:45">
-      <input type="checkbox" class="check" data-id="cube-plan" />
-      <span class="time">13:30 – 13:45</span> Cube Madness — plan or sketch idea
-    </div>
-    <div class="item" data-start="13:45" data-end="14:00">
-      <input type="checkbox" class="check" data-id="clean-floor" />
-      <span class="time">13:45 – 14:00</span> Clean room — floor & clutter
-    </div>
-    <div class="item break" data-start="14:00" data-end="14:15">
-      <input type="checkbox" class="check" data-id="break-music-1" />
-      <span class="time">14:00 – 14:15</span> Break — music or stretch
-    </div>
-    <div class="item" data-start="14:15" data-end="14:30">
-      <input type="checkbox" class="check" data-id="game-dev-feature" />
-      <span class="time">14:15 – 14:30</span> Game Dev — small feature
-    </div>
-    <div class="item" data-start="14:30" data-end="14:45">
-      <input type="checkbox" class="check" data-id="walk" />
-      <span class="time">14:30 – 14:45</span> Go outside — short walk
-    </div>
-    <div class="item" data-start="14:45" data-end="15:00">
-      <input type="checkbox" class="check" data-id="play-light" />
-      <span class="time">14:45 – 15:00</span> Play games — light fun
-    </div>
-    <div class="item break" data-start="15:00" data-end="15:30">
-      <input type="checkbox" class="check" data-id="lunch" />
-      <span class="time">15:00 – 15:30</span> Lunch / Free time
-    </div>
-    <div class="item" data-start="15:30" data-end="15:45">
-      <input type="checkbox" class="check" data-id="clean-desk" />
-      <span class="time">15:30 – 15:45</span> Clean room — desk & shelves
-    </div>
-    <div class="item" data-start="15:45" data-end="16:00">
-      <input type="checkbox" class="check" data-id="game-dev-polish" />
-      <span class="time">15:45 – 16:00</span> Game Dev — test or polish
-    </div>
-    <div class="item" data-start="16:00" data-end="16:15">
-      <input type="checkbox" class="check" data-id="read" />
-      <span class="time">16:00 – 16:15</span> Read — unwind
-    </div>
-    <div class="item break" data-start="16:15" data-end="16:30">
-      <input type="checkbox" class="check" data-id="break-music-2" />
-      <span class="time">16:15 – 16:30</span> Break — music or walk
-    </div>
-    <div class="item" data-start="16:30" data-end="16:45">
-      <input type="checkbox" class="check" data-id="creative" />
-      <span class="time">16:30 – 16:45</span> Creative — write or sketch
-    </div>
-    <div class="item" data-start="16:45" data-end="17:00">
-      <input type="checkbox" class="check" data-id="game-dev-plan" />
-      <span class="time">16:45 – 17:00</span> Game Dev — future planning
-    </div>
-    <div class="item" data-start="17:00" data-end="17:15">
-      <input type="checkbox" class="check" data-id="chill-music" />
-      <span class="time">17:00 – 17:15</span> Chill — music or water
-    </div>
-    <div class="item" data-start="17:15" data-end="17:30">
-      <input type="checkbox" class="check" data-id="cube-implement" />
-      <span class="time">17:15 – 17:30</span> Cube Madness — implement idea
-    </div>
-    <div class="item" data-start="17:30" data-end="17:45">
-      <input type="checkbox" class="check" data-id="play-break" />
-      <span class="time">17:30 – 17:45</span> Play games — fun break
-    </div>
-    <div class="item break" data-start="17:45" data-end="18:00">
-      <input type="checkbox" class="check" data-id="break-stretch" />
-      <span class="time">17:45 – 18:00</span> Break — stretch & relax
-    </div>
-    <div class="item" data-start="18:00" data-end="18:15">
-      <input type="checkbox" class="check" data-id="game-dev-push" />
-      <span class="time">18:00 – 18:15</span> Game Dev — polish & push
-    </div>
-    <div class="item" data-start="18:15" data-end="18:30">
-      <input type="checkbox" class="check" data-id="chill-free" />
-      <span class="time">18:15 – 18:30</span> Chill — free time
-    </div>
-    <div class="item break" data-start="18:30" data-end="19:00">
-      <input type="checkbox" class="check" data-id="dinner" />
-      <span class="time">18:30 – 19:00</span> Dinner / relax
-    </div>
-    <div class="item" data-start="19:00" data-end="19:15">
-      <input type="checkbox" class="check" data-id="tidy-room" />
-      <span class="time">19:00 – 19:15</span> Tidy room — reset space
-    </div>
-    <div class="item" data-start="19:15" data-end="19:30">
-      <input type="checkbox" class="check" data-id="game-dev-final" />
-      <span class="time">19:15 – 19:30</span> Game Dev — final tweaks
-    </div>
-    <div class="item" data-start="19:30" data-end="19:45">
-      <input type="checkbox" class="check" data-id="journal" />
-      <span class="time">19:30 – 19:45</span> Journal — short entry
-    </div>
-    <div class="item" data-start="19:45" data-end="20:00">
-      <input type="checkbox" class="check" data-id="free-sketch" />
-      <span class="time">19:45 – 20:00</span> Free time — sketch or music
-    </div>
-    <div class="item" data-start="20:00" data-end="20:15">
-      <input type="checkbox" class="check" data-id="reading" />
-      <span class="time">20:00 – 20:15</span> Reading — calm down
-    </div>
-    <div class="item" data-start="20:15" data-end="20:30">
-      <input type="checkbox" class="check" data-id="clean-drawer" />
-      <span class="time">20:15 – 20:30</span> Clean room — drawer/shelf
-    </div>
-    <div class="item break" data-start="20:30" data-end="20:45">
-      <input type="checkbox" class="check" data-id="break-dim" />
-      <span class="time">20:30 – 20:45</span> Break — dim light music
-    </div>
-    <div class="item" data-start="20:45" data-end="21:00">
-      <input type="checkbox" class="check" data-id="reflect-journal" />
-      <span class="time">20:45 – 21:00</span> Reflect / Journal
-    </div>
-    <div class="item" data-start="21:00" data-end="21:07">
-      <input type="checkbox" class="check" data-id="no-screen" />
-      <span class="time">21:00 – 21:07</span> No screen time — stretch / sit
-    </div>
-    <div class="item" data-start="21:30" data-end="22:00">
-      <input type="checkbox" class="check" data-id="wind-down" />
-      <span class="time">21:30 – 22:00</span> Wind down — prepare for sleep
+  <div class="item" style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 1em;">
+    <!-- Container for 1-min blocks -->
+    <div style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;">
+      <!-- Each block is roughly 1/60th of the hour -->
+      <!-- I'll create 60 blocks labeled 1 to 60 -->
+      <!-- For readability, I give them a small fixed width -->
+      <style>
+        .one-min-block {
+          flex: 0 0 3.2%;
+          border: 1px solid #ccc;
+          padding: 4px 0;
+          font-size: 0.75em;
+          text-align: center;
+          user-select: none;
+          background: #f0f0f0;
+          border-radius: 3px;
+        }
+      </style>
+      <script>
+        // (For demonstration only, not used in HTML snippet)
+        // This script would create the blocks dynamically in a real environment
+      </script>
+  
+      <!-- Blocks manually written here: -->
+      <div class="one-min-block" data-start="21:00" data-end="21:01">1</div>
+      <div class="one-min-block" data-start="21:01" data-end="21:02">2</div>
+      <div class="one-min-block" data-start="21:02" data-end="21:03">3</div>
+      <div class="one-min-block" data-start="21:03" data-end="21:04">4</div>
+      <div class="one-min-block" data-start="21:04" data-end="21:05">5</div>
+      <div class="one-min-block" data-start="21:05" data-end="21:06">6</div>
+      <div class="one-min-block" data-start="21:06" data-end="21:07">7</div>
+      <div class="one-min-block" data-start="21:07" data-end="21:08">8</div>
+      <div class="one-min-block" data-start="21:08" data-end="21:09">9</div>
+      <div class="one-min-block" data-start="21:09" data-end="21:10">10</div>
+      <div class="one-min-block" data-start="21:10" data-end="21:11">11</div>
+      <div class="one-min-block" data-start="21:11" data-end="21:12">12</div>
+      <div class="one-min-block" data-start="21:12" data-end="21:13">13</div>
+      <div class="one-min-block" data-start="21:13" data-end="21:14">14</div>
+      <div class="one-min-block" data-start="21:14" data-end="21:15">15</div>
+      <div class="one-min-block" data-start="21:15" data-end="21:16">16</div>
+      <div class="one-min-block" data-start="21:16" data-end="21:17">17</div>
+      <div class="one-min-block" data-start="21:17" data-end="21:18">18</div>
+      <div class="one-min-block" data-start="21:18" data-end="21:19">19</div>
+      <div class="one-min-block" data-start="21:19" data-end="21:20">20</div>
+      <div class="one-min-block" data-start="21:20" data-end="21:21">21</div>
+      <div class="one-min-block" data-start="21:21" data-end="21:22">22</div>
+      <div class="one-min-block" data-start="21:22" data-end="21:23">23</div>
+      <div class="one-min-block" data-start="21:23" data-end="21:24">24</div>
+      <div class="one-min-block" data-start="21:24" data-end="21:25">25</div>
+      <div class="one-min-block" data-start="21:25" data-end="21:26">26</div>
+      <div class="one-min-block" data-start="21:26" data-end="21:27">27</div>
+      <div class="one-min-block" data-start="21:27" data-end="21:28">28</div>
+      <div class="one-min-block" data-start="21:28" data-end="21:29">29</div>
+      <div class="one-min-block" data-start="21:29" data-end="21:30">30</div>
+      <div class="one-min-block" data-start="21:30" data-end="21:31">31</div>
+      <div class="one-min-block" data-start="21:31" data-end="21:32">32</div>
+      <div class="one-min-block" data-start="21:32" data-end="21:33">33</div>
+      <div class="one-min-block" data-start="21:33" data-end="21:34">34</div>
+      <div class="one-min-block" data-start="21:34" data-end="21:35">35</div>
+      <div class="one-min-block" data-start="21:35" data-end="21:36">36</div>
+      <div class="one-min-block" data-start="21:36" data-end="21:37">37</div>
+      <div class="one-min-block" data-start="21:37" data-end="21:38">38</div>
+      <div class="one-min-block" data-start="21:38" data-end="21:39">39</div>
+      <div class="one-min-block" data-start="21:39" data-end="21:40">40</div>
+      <div class="one-min-block" data-start="21:40" data-end="21:41">41</div>
+      <div class="one-min-block" data-start="21:41" data-end="21:42">42</div>
+      <div class="one-min-block" data-start="21:42" data-end="21:43">43</div>
+      <div class="one-min-block" data-start="21:43" data-end="21:44">44</div>
+      <div class="one-min-block" data-start="21:44" data-end="21:45">45</div>
+      <div class="one-min-block" data-start="21:45" data-end="21:46">46</div>
+      <div class="one-min-block" data-start="21:46" data-end="21:47">47</div>
+      <div class="one-min-block" data-start="21:47" data-end="21:48">48</div>
+      <div class="one-min-block" data-start="21:48" data-end="21:49">49</div>
+      <div class="one-min-block" data-start="21:49" data-end="21:50">50</div>
+      <div class="one-min-block" data-start="21:50" data-end="21:51">51</div>
+      <div class="one-min-block" data-start="21:51" data-end="21:52">52</div>
+      <div class="one-min-block" data-start="21:52" data-end="21:53">53</div>
+      <div class="one-min-block" data-start="21:53" data-end="21:54">54</div>
+      <div class="one-min-block" data-start="21:54" data-end="21:55">55</div>
+      <div class="one-min-block" data-start="21:55" data-end="21:56">56</div>
+      <div class="one-min-block" data-start="21:56" data-end="21:57">57</div>
+      <div class="one-min-block" data-start="21:57" data-end="21:58">58</div>
+      <div class="one-min-block" data-start="21:58" data-end="21:59">59</div>
+      <div class="one-min-block" data-start="21:59" data-end="22:00">60</div>
     </div>
   </div>
+  
   
   
 
