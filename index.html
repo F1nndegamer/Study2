@@ -1,329 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>15-Min Block Schedule</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .schedule {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .item {
-      border-bottom: 1px solid #eee;
-      padding: 12px 0;
-    }
-
-    .time {
-      font-weight: bold;
-      color: #2a7ae2;
-      width: 90px;
-      display: inline-block;
-    }
-
-    .break {
-      font-style: italic;
-      color: #666;
-    }
-
-    .current {
-      background: #d7f0ff;
-      border-left: 5px solid #2a7ae2;
-      padding-left: 15px;
-    }
-
-    button {
-      display: block;
-      margin: 0 auto 10px auto;
-      padding: 6px 12px;
-      background-color: #2a7ae2;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    #progressBar {
-      width: 100%;
-      height: 12px;
-      margin: 10px 0 20px;
-    }
-
-    /* Dark Mode */
-    body.dark {
-      background: #121212;
-      color: #eee;
-    }
-
-    body.dark .schedule {
-      background: #1e1e1e;
-      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
-    }
-
-    body.dark .time {
-      color: #90caf9;
-    }
-
-    body.dark .break {
-      color: #aaa;
-    }
-    .item input.check {
-  margin-right: 8px;
-  transform: scale(1.2);
-}
-.item.checked {
-  opacity: 0.5;
-  text-decoration: line-through;
-}
-
-    /* Mobile Optimization */
-    @media (max-width: 500px) {
-      .time {
-        display: block;
-        margin-bottom: 5px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>15-Min Block Schedule</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+        transition: background 0.3s, color 0.3s;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <h1>15-Minute Block Schedule</h1>
-  <button onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
-  <progress id="progressBar" value="0" max="100"></progress>
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
 
-  <div id="currentTime" style="text-align:center; font-size:1.2em; margin-bottom:10px;"></div>
+      .schedule {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
 
-  <div class="schedule" id="schedule">
-  <div class="item" data-start="11:30" data-end="11:45">
-    <input type="checkbox" class="check" data-id="wake" />
-    <span class="time">11:30 – 11:45</span> Wake up — stretch & water
-  </div>
-  <div class="item" data-start="11:45" data-end="12:00">
-    <input type="checkbox" class="check" data-id="breakfast" />
-    <span class="time">11:45 – 12:00</span> Breakfast — light start
-  </div>
+      .item {
+        border-bottom: 1px solid #eee;
+        padding: 12px 0;
+      }
 
-  <div class="item" data-start="12:15" data-end="12:40">
-    <input type="checkbox" class="check" data-id="reading1" />
-    <span class="time">12:15 – 12:40</span> Reading — first 25 pages
-  </div>
-  <div class="item break" data-start="12:40" data-end="12:45">
-    <input type="checkbox" class="check" data-id="break1" />
-    <span class="time">12:40 – 12:45</span> 5-min break — short stretch
-  </div>
+      .time {
+        font-weight: bold;
+        color: #2a7ae2;
+        width: 90px;
+        display: inline-block;
+      }
 
-  <div class="item" data-start="12:45" data-end="13:10">
-    <input type="checkbox" class="check" data-id="tribes1" />
-    <span class="time">12:45 – 13:10</span> Tribes — creative ideas
-  </div>
-  <div class="item break" data-start="13:10" data-end="13:20">
-    <input type="checkbox" class="check" data-id="break2" />
-    <span class="time">13:10 – 13:20</span> 10-min break — music
-  </div>
+      .break {
+        font-style: italic;
+        color: #666;
+      }
 
-  <div class="item" data-start="13:20" data-end="13:45">
-    <input type="checkbox" class="check" data-id="typing1" />
-    <span class="time">13:20 – 13:45</span> Typing practice — focused
-  </div>
-  <div class="item break" data-start="13:45" data-end="13:50">
-    <input type="checkbox" class="check" data-id="break3" />
-    <span class="time">13:45 – 13:50</span> 5-min break
-  </div>
+      .current {
+        background: #d7f0ff;
+        border-left: 5px solid #2a7ae2;
+        padding-left: 15px;
+      }
 
-  <div class="item" data-start="13:50" data-end="14:15">
-    <input type="checkbox" class="check" data-id="clean1" />
-    <span class="time">13:50 – 14:15</span> Clean — desk & shelves
-  </div>
-  <div class="item break" data-start="14:15" data-end="14:25">
-    <input type="checkbox" class="check" data-id="break4" />
-    <span class="time">14:15 – 14:25</span> 10-min break — chill
-  </div>
+      button {
+        display: block;
+        margin: 0 auto 10px auto;
+        padding: 6px 12px;
+        background-color: #2a7ae2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
 
-  <div class="item" data-start="14:25" data-end="14:50">
-    <input type="checkbox" class="check" data-id="reading2" />
-    <span class="time">14:25 – 14:50</span> Reading — next 25 pages
-  </div>
-  <div class="item break" data-start="14:50" data-end="14:55">
-    <input type="checkbox" class="check" data-id="break5" />
-    <span class="time">14:50 – 14:55</span> 5-min break
-  </div>
+      #progressBar {
+        width: 100%;
+        height: 12px;
+        margin: 10px 0 20px;
+      }
 
-  <div class="item" data-start="14:55" data-end="15:20">
-    <input type="checkbox" class="check" data-id="tribes2" />
-    <span class="time">14:55 – 15:20</span> Tribes — feature/test
-  </div>
-  <div class="item break" data-start="15:20" data-end="15:30">
-    <input type="checkbox" class="check" data-id="break6" />
-    <span class="time">15:20 – 15:30</span> 10-min break — walk/stretch
-  </div>
+      /* Dark Mode */
+      body.dark {
+        background: #121212;
+        color: #eee;
+      }
 
-  <div class="item" data-start="15:30" data-end="15:55">
-    <input type="checkbox" class="check" data-id="reading3" />
-    <span class="time">15:30 – 15:55</span> Reading — next 25 pages
-  </div>
-  <div class="item break" data-start="15:55" data-end="16:00">
-    <input type="checkbox" class="check" data-id="break7" />
-    <span class="time">15:55 – 16:00</span> 5-min break
-  </div>
+      body.dark .schedule {
+        background: #1e1e1e;
+        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+      }
 
-  <div class="item" data-start="16:00" data-end="16:25">
-    <input type="checkbox" class="check" data-id="typing2" />
-    <span class="time">16:00 – 16:25</span> Typing practice — second set
-  </div>
-  <div class="item break" data-start="16:25" data-end="16:35">
-    <input type="checkbox" class="check" data-id="break8" />
-    <span class="time">16:25 – 16:35</span> 10-min break — music
-  </div>
+      body.dark .time {
+        color: #90caf9;
+      }
 
-  <div class="item" data-start="16:35" data-end="17:00">
-    <input type="checkbox" class="check" data-id="test" />
-    <span class="time">16:35 – 17:00</span> Small test — 20 min focus
-  </div>
+      body.dark .break {
+        color: #aaa;
+      }
+      .item input.check {
+        margin-right: 8px;
+        transform: scale(1.2);
+      }
+      .item.checked {
+        opacity: 0.5;
+        text-decoration: line-through;
+      }
 
-  <div class="item break" data-start="17:00" data-end="17:30">
-    <input type="checkbox" class="check" data-id="break9" />
-    <span class="time">17:00 – 17:30</span> Long break before dinner
-  </div>
-
-  <div class="item" data-start="17:30" data-end="18:30">
-    <input type="checkbox" class="check" data-id="dinner" />
-    <span class="time">17:30 – 18:30</span> Dinner & relax
-  </div>
-
-  <div class="item" data-start="18:45" data-end="19:10">
-    <input type="checkbox" class="check" data-id="reading4" />
-    <span class="time">18:45 – 19:10</span> Reading — final pages
-  </div>
-  <div class="item break" data-start="19:10" data-end="19:15">
-    <input type="checkbox" class="check" data-id="break10" />
-    <span class="time">19:10 – 19:15</span> 5-min break
-  </div>
-
-  <div class="item" data-start="19:15" data-end="19:40">
-    <input type="checkbox" class="check" data-id="tribes3" />
-    <span class="time">19:15 – 19:40</span> Tribes — final pass
-  </div>
-  <div class="item break" data-start="19:40" data-end="19:50">
-    <input type="checkbox" class="check" data-id="break11" />
-    <span class="time">19:40 – 19:50</span> 10-min break
-  </div>
-
-  <div class="item" data-start="19:50" data-end="20:15">
-    <input type="checkbox" class="check" data-id="clean2" />
-    <span class="time">19:50 – 20:15</span> Clean — final tidy up
-  </div>
-
-  <div class="item break" data-start="20:15" data-end="20:25">
-    <input type="checkbox" class="check" data-id="break12" />
-    <span class="time">20:15 – 20:25</span> 10-min relax
-  </div>
-
-  <div class="item" data-start="20:25" data-end="20:50">
-    <input type="checkbox" class="check" data-id="typing3" />
-    <span class="time">20:25 – 20:50</span> Typing — evening session
-  </div>
-
-  <div class="item" data-start="21:00" data-end="21:15">
-    <input type="checkbox" class="check" data-id="reflect" />
-    <span class="time">21:00 – 21:15</span> Reflect — journal / quiet
-  </div>
-
-  <div class="item" data-start="21:30" data-end="22:00">
-    <input type="checkbox" class="check" data-id="winddown" />
-    <span class="time">21:30 – 22:00</span> Wind down — no screens
-  </div>
-
-  <div class="item" data-start="22:30" data-end="23:00">
-    <input type="checkbox" class="check" data-id="sleep" />
-    <span class="time">22:30 – 23:00</span> Prepare for sleep
-  </div>
-</div>
-
-  
-
-  <script>
-    function updateCurrentItem() {
-      const now = new Date();
-      const currentHour = now.getHours();
-      const currentMinutes = now.getMinutes();
-      const nowTotal = currentHour * 60 + currentMinutes;
-      const scheduleItems = document.querySelectorAll(".schedule .item");
-
-      scheduleItems.forEach(item => {
-        const start = item.getAttribute("data-start").split(":");
-        const end = item.getAttribute("data-end").split(":");
-        const startTotal = parseInt(start[0]) * 60 + parseInt(start[1]);
-        const endTotal = parseInt(end[0]) * 60 + parseInt(end[1]);
-
-        if (nowTotal >= startTotal && nowTotal < endTotal) {
-          item.classList.add("current");
-        } else {
-          item.classList.remove("current");
+      /* Mobile Optimization */
+      @media (max-width: 500px) {
+        .time {
+          display: block;
+          margin-bottom: 5px;
         }
-      });
-    }
+      }
+    </style>
+  </head>
 
-    function updateProgress() {
-      const now = new Date();
-      const nowTotal = now.getHours() * 60 + now.getMinutes();
-      const startMinutes = 14 * 60; // 15:00
-      const endMinutes = 22 * 60;   // 22:00
-      const percent = Math.min(100, Math.max(0, ((nowTotal - startMinutes) / (endMinutes - startMinutes)) * 100));
-      document.getElementById("progressBar").value = percent;
-    }
+  <body>
+    <h1>15-Minute Block Schedule</h1>
+    <button onclick="document.body.classList.toggle('dark')">
+      Toggle Dark Mode
+    </button>
+    <progress id="progressBar" value="0" max="100"></progress>
 
-    function updateCurrentTime() {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      document.getElementById("currentTime").textContent = `Current time: ${hours}:${minutes}:${seconds}`;
-    }
+    <div
+      id="currentTime"
+      style="text-align: center; font-size: 1.2em; margin-bottom: 10px"
+    ></div>
 
-    updateCurrentItem();
-    updateProgress();
-    updateCurrentTime();
-    setInterval(() => {
+    <div class="schedule" id="schedule">
+      <div class="item" data-start="13:30" data-end="13:45">
+        <input type="checkbox" class="check" data-id="clean-floor-1" />
+        <span class="time">13:30 – 13:45</span> Clean room — floor (pass 1)
+      </div>
+
+      <div class="item break" data-start="13:45" data-end="13:50">
+        <input type="checkbox" class="check" data-id="break1" />
+        <span class="time">13:45 – 13:50</span> 5-min break
+      </div>
+
+      <div class="item" data-start="13:50" data-end="14:05">
+        <input type="checkbox" class="check" data-id="clean-desk-1" />
+        <span class="time">13:50 – 14:05</span> Clean room — desk surface
+      </div>
+
+      <div class="item break" data-start="14:05" data-end="14:15">
+        <input type="checkbox" class="check" data-id="break2" />
+        <span class="time">14:05 – 14:15</span> 10-min break — chill
+      </div>
+
+      <div class="item" data-start="14:15" data-end="14:30">
+        <input type="checkbox" class="check" data-id="typing" />
+        <span class="time">14:15 – 14:30</span> Typing practice
+      </div>
+
+      <div class="item break" data-start="14:30" data-end="14:35">
+        <input type="checkbox" class="check" data-id="break3" />
+        <span class="time">14:30 – 14:35</span> 5-min break
+      </div>
+
+      <div class="item" data-start="14:35" data-end="14:50">
+        <input type="checkbox" class="check" data-id="clean-random-1" />
+        <span class="time">14:35 – 14:50</span> Clean room — random items
+      </div>
+
+      <div class="item break" data-start="14:50" data-end="15:00">
+        <input type="checkbox" class="check" data-id="break4" />
+        <span class="time">14:50 – 15:00</span> 10-min break
+      </div>
+
+      <div class="item" data-start="15:00" data-end="15:15">
+        <input type="checkbox" class="check" data-id="history" />
+        <span class="time">15:00 – 15:15</span> History — drawing task
+      </div>
+
+      <div class="item break" data-start="15:15" data-end="15:20">
+        <input type="checkbox" class="check" data-id="break5" />
+        <span class="time">15:15 – 15:20</span> 5-min break
+      </div>
+
+      <div class="item" data-start="15:20" data-end="15:35">
+        <input type="checkbox" class="check" data-id="clean-floor-2" />
+        <span class="time">15:20 – 15:35</span> Clean room — floor (finish)
+      </div>
+
+      <div class="item break" data-start="15:35" data-end="15:45">
+        <input type="checkbox" class="check" data-id="break6" />
+        <span class="time">15:35 – 15:45</span> 10-min break
+      </div>
+
+      <div class="item" data-start="15:45" data-end="16:00">
+        <input type="checkbox" class="check" data-id="reading" />
+        <span class="time">15:45 – 16:00</span> Reading
+      </div>
+
+      <div class="item break" data-start="16:00" data-end="16:05">
+        <input type="checkbox" class="check" data-id="break7" />
+        <span class="time">16:00 – 16:05</span> 5-min break
+      </div>
+
+      <div class="item" data-start="16:05" data-end="16:20">
+        <input type="checkbox" class="check" data-id="clean-desk-2" />
+        <span class="time">16:05 – 16:20</span> Clean room — desk & cables
+      </div>
+
+      <div class="item break" data-start="16:20" data-end="16:30">
+        <input type="checkbox" class="check" data-id="break8" />
+        <span class="time">16:20 – 16:30</span> 10-min break — reset
+      </div>
+
+      <div class="item" data-start="16:30" data-end="16:45">
+        <input type="checkbox" class="check" data-id="gamedev" />
+        <span class="time">16:30 – 16:45</span> Game dev — small thing
+      </div>
+
+      <div class="item break" data-start="16:45" data-end="16:50">
+        <input type="checkbox" class="check" data-id="break9" />
+        <span class="time">16:45 – 16:50</span> 5-min break
+      </div>
+
+      <div class="item" data-start="16:50" data-end="17:05">
+        <input type="checkbox" class="check" data-id="clean-reset" />
+        <span class="time">16:50 – 17:05</span> Clean room — final reset
+      </div>
+
+      <div class="item break" data-start="17:05" data-end="17:20">
+        <input type="checkbox" class="check" data-id="break10" />
+        <span class="time">17:05 – 17:20</span> Long break — you earned it
+      </div>
+    </div>
+
+    <script>
+      function updateCurrentItem() {
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinutes = now.getMinutes();
+        const nowTotal = currentHour * 60 + currentMinutes;
+        const scheduleItems = document.querySelectorAll(".schedule .item");
+
+        scheduleItems.forEach((item) => {
+          const start = item.getAttribute("data-start").split(":");
+          const end = item.getAttribute("data-end").split(":");
+          const startTotal = parseInt(start[0]) * 60 + parseInt(start[1]);
+          const endTotal = parseInt(end[0]) * 60 + parseInt(end[1]);
+
+          if (nowTotal >= startTotal && nowTotal < endTotal) {
+            item.classList.add("current");
+          } else {
+            item.classList.remove("current");
+          }
+        });
+      }
+
+      function updateProgress() {
+        const now = new Date();
+        const nowTotal = now.getHours() * 60 + now.getMinutes();
+        const startMinutes = 14 * 60; // 15:00
+        const endMinutes = 22 * 60; // 22:00
+        const percent = Math.min(
+          100,
+          Math.max(
+            0,
+            ((nowTotal - startMinutes) / (endMinutes - startMinutes)) * 100
+          )
+        );
+        document.getElementById("progressBar").value = percent;
+      }
+
+      function updateCurrentTime() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, "0");
+        const minutes = now.getMinutes().toString().padStart(2, "0");
+        const seconds = now.getSeconds().toString().padStart(2, "0");
+        document.getElementById(
+          "currentTime"
+        ).textContent = `Current time: ${hours}:${minutes}:${seconds}`;
+      }
+
       updateCurrentItem();
       updateProgress();
       updateCurrentTime();
-    }, 1000);
+      setInterval(() => {
+        updateCurrentItem();
+        updateProgress();
+        updateCurrentTime();
+      }, 1000);
 
-    const items = document.querySelectorAll('.item');
+      const items = document.querySelectorAll(".item");
 
       items.forEach((item, index) => {
-        const checkbox = item.querySelector('input.check');
+        const checkbox = item.querySelector("input.check");
         if (!checkbox) return;
 
-        const isChecked = localStorage.getItem('task_' + index) === 'true';
+        const isChecked = localStorage.getItem("task_" + index) === "true";
         checkbox.checked = isChecked;
-        if (isChecked) item.classList.add('checked');
+        if (isChecked) item.classList.add("checked");
 
-        checkbox.addEventListener('change', () => {
-          item.classList.toggle('checked', checkbox.checked);
-          localStorage.setItem('task_' + index, checkbox.checked);
+        checkbox.addEventListener("change", () => {
+          item.classList.toggle("checked", checkbox.checked);
+          localStorage.setItem("task_" + index, checkbox.checked);
         });
       });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
